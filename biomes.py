@@ -59,7 +59,7 @@ def make_colour(features):
     ## swamp
 
     if "swamp" in features:
-        r, g, b = (128, 160, 0)
+        r, g, b = (32, 96, 128)
 
     ## river
 
@@ -89,11 +89,17 @@ def make_colour(features):
         r, g, b = (224, 240, 255)
 
     if "frozen" in features:
-        r += 48
+        r = min(255, r + 64)
+        g = min(255, g + 64)
+        b = min(255, b + 64)
     if "cold" in features:
-        r += 32
+        r = min(255, r + 32)
+        g = min(255, g + 32)
+        b = min(255, b + 32)
     if "deep" in features:
-        b -= 64
+        r = max(0, r - 64)
+        g = max(0, g - 64)
+        b = max(0, b - 32)
 
     if "hills" in features:
         r = min(255, r + 32)
@@ -103,6 +109,11 @@ def make_colour(features):
     if "tall" in features:
         r = max(0, r - 16)
         g = max(0, g - 16)
+        b = max(0, b - 16)
+
+    if "dark" in features:
+        r = max(0, r - 32)
+        g = max(0, g - 32)
         b = max(0, b - 16)
 
     assert 0 <= r <= 255, features
@@ -192,4 +203,5 @@ def map_biomes(sx, ex, sz, ez, output_filename):
 
 
 if __name__ == "__main__":
+    map_biomes(-32, 48, -32, 48, "biomes-local.png")
     map_biomes(-256, 256, -256, 300, "biomes.png")
