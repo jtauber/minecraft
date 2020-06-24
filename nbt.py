@@ -1,6 +1,6 @@
 import struct
 
-# The Named Binary Tag (NBT) format encodes primative and composite data
+# The Named Binary Tag (NBT) format encodes primitive and composite data
 # structures into a binary stream.
 
 
